@@ -7,9 +7,9 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
  
     BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'sadangvh'
-    BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'omRoAyRuPiMtgVRFr9OsCYsDAVAiJmMHAi+5Mw8i2wrt6rFprU4h3HaQ6F6wflDPys0H9AeeLffc+AStVCI7cQ=='
+    BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or '+jreiOe3Oc/vq0EQZEjysp6gTnnztkBWRb8TnXMdjqmkKBWzgphbL7GFhHj5eqFwQ1ANIHJE+AuB+AStIBFyzA=='
     BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'images'
-    BLOB_CONNECTION_STRING = os.environ.get('BLOB_CONNECTION_STRING') or 'DefaultEndpointsProtocol=https;AccountName=sadangvh;AccountKey=omRoAyRuPiMtgVRFr9OsCYsDAVAiJmMHAi+5Mw8i2wrt6rFprU4h3HaQ6F6wflDPys0H9AeeLffc+AStVCI7cQ==;EndpointSuffix=core.windows.net'
+    BLOB_CONNECTION_STRING = os.environ.get('BLOB_CONNECTION_STRING') or 'DefaultEndpointsProtocol=https;AccountName=dangvh8sa;AccountKey=+jreiOe3Oc/vq0EQZEjysp6gTnnztkBWRb8TnXMdjqmkKBWzgphbL7GFhHj5eqFwQ1ANIHJE+AuB+AStIBFyzA==;EndpointSuffix=core.windows.net'
  
     SQL_SERVER = os.environ.get('SQL_SERVER') or 'dbsvdangvh.database.windows.net'
     SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'dbdangvh'
