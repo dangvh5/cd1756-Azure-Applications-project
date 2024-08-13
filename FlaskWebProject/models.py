@@ -6,6 +6,7 @@ from azure.storage.blob import BlobServiceClient
 import string, random
 from werkzeug.utils import secure_filename
 from flask import flash
+import logging
 
 blob_container = app.config['BLOB_CONTAINER']
 connection_string = app.config['BLOB_CONNECTION_STRING']
@@ -45,7 +46,7 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
-
+    
     def save_changes(self, form, file, userId, new=False):
         self.title = form.title.data
         self.author = form.author.data
@@ -53,17 +54,61 @@ class Post(db.Model):
         self.user_id = userId
 
         if file:
-            filename = secure_filename(file.filename);
-            fileextension = filename.rsplit('.',1)[1];
-            Randomfilename = id_generator();
-            filename = Randomfilename + '.' + fileextension;
+            filename = secure_filename(file.filename)
+            file_extension = filename.rsplit('.', 1)[1]
+            random_filename = id_generator()
+            filename = f"{random_filename}.{file_extension}"
+            
             try:
-                blob_service.create_blob_from_stream(blob_container, filename, file)
-                if(self.image_path):
-                    blob_service.delete_blob(blob_container, self.image_path)
-            except Exception:
-                flash(Exception)
-            self.image_path =  filename
+                # Create BlobServiceClient
+                blob_service_client = BlobServiceClient.from_connection_string(app.config['BLOB_CONNECTION_STRING'])
+                
+                # Create BlobClient for new file
+                blob_client = blob_service_client.get_blob_client(container=app.config['BLOB_CONTAINER'], blob=filename)
+                
+                # Upload new file to blob
+                blob_client.upload_blob(file, overwrite=True)
+                
+                # Delete old image from blob storage if it exists
+                if self.image_path:
+                    old_blob_client = blob_service_client.get_blob_client(container=app.config['BLOB_CONTAINER'], blob=self.image_path)
+                    old_blob_client.delete_blob()
+
+            except Exception as e:
+                flash(str(e))
+                logging.error(f"An error occurred: {e}")
+                logging.exception(blob_service_client)
+                logging.exception(blob_client)
+            # Update image path in the object
+            self.image_path = filename
+
+        # Add new entry to the session if 'new' is True
         if new:
             db.session.add(self)
+
+        # Commit the session changes
         db.session.commit()
+        
+    # def save_changes(self, form, file, userId, new=False):
+    #     self.title = form.title.data
+    #     self.author = form.author.data
+    #     self.body = form.body.data
+    #     self.user_id = userId
+
+    #     if file:
+    #         filename = secure_filename(file.filename);
+    #         fileextension = filename.rsplit('.',1)[1];
+    #         Randomfilename = id_generator();
+    #         filename = Randomfilename + '.' + fileextension;
+    #         try:
+    #             blob_service.create_blob_from_stream(blob_container, filename, file)
+    #             if(self.image_path):
+    #                 blob_service.delete_blob(blob_container, self.image_path)
+    #         except Exception as e:
+    #             flash(Exception)
+    #             logging.error(f"An error occurred: {e}")
+    #         self.image_path =  filename
+    #     if new:
+    #         db.session.add(self)
+    #     db.session.commit()
+    
