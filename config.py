@@ -6,14 +6,14 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
  
-    BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'sadangvh'
+    BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'dangvh8sa'
     BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or '+jreiOe3Oc/vq0EQZEjysp6gTnnztkBWRb8TnXMdjqmkKBWzgphbL7GFhHj5eqFwQ1ANIHJE+AuB+AStIBFyzA=='
     BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'images'
     BLOB_CONNECTION_STRING = os.environ.get('BLOB_CONNECTION_STRING') or 'DefaultEndpointsProtocol=https;AccountName=dangvh8sa;AccountKey=+jreiOe3Oc/vq0EQZEjysp6gTnnztkBWRb8TnXMdjqmkKBWzgphbL7GFhHj5eqFwQ1ANIHJE+AuB+AStIBFyzA==;EndpointSuffix=core.windows.net'
  
-    SQL_SERVER = os.environ.get('SQL_SERVER') or 'dbsvdangvh.database.windows.net'
-    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'dbdangvh'
-    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'dangvh08admin'
+    SQL_SERVER = os.environ.get('SQL_SERVER') or 'dangvh8server.database.windows.net'
+    SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'dangvh8db'
+    SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'dangvh8admin'
     SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'Thehangedman!2'
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
     SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + SQL_DATABASE  + '?driver=ODBC+Driver+17+for+SQL+Server'
