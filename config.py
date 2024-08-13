@@ -7,17 +7,17 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret-key'
  
     BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'sadangvh'
-    BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 't/IIMhkoGk27Yf5Yt9QSoLuRSWgWKHCi02co9f6Kyj63SCgO6wne+DDCYNdE9KGsviE9YLqOGFqv+AStnAdMJw=='
+    BLOB_STORAGE_KEY = os.environ.get('BLOB_STORAGE_KEY') or 'omRoAyRuPiMtgVRFr9OsCYsDAVAiJmMHAi+5Mw8i2wrt6rFprU4h3HaQ6F6wflDPys0H9AeeLffc+AStVCI7cQ=='
     BLOB_CONTAINER = os.environ.get('BLOB_CONTAINER') or 'images'
-    BLOB_CONNECTION_STRING = os.environ.get('BLOB_CONNECTION_STRING') or 'DefaultEndpointsProtocol=https;AccountName=sadangvh;AccountKey=t/IIMhkoGk27Yf5Yt9QSoLuRSWgWKHCi02co9f6Kyj63SCgO6wne+DDCYNdE9KGsviE9YLqOGFqv+AStnAdMJw==;EndpointSuffix=core.windows.net'
+    BLOB_CONNECTION_STRING = os.environ.get('BLOB_CONNECTION_STRING') or 'DefaultEndpointsProtocol=https;AccountName=sadangvh;AccountKey=omRoAyRuPiMtgVRFr9OsCYsDAVAiJmMHAi+5Mw8i2wrt6rFprU4h3HaQ6F6wflDPys0H9AeeLffc+AStVCI7cQ==;EndpointSuffix=core.windows.net'
  
     SQL_SERVER = os.environ.get('SQL_SERVER') or 'dbsvdangvh.database.windows.net'
     SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'dbdangvh'
     SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'dangvh08admin'
     SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'Thehangedman!2'
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
-    # SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + SQL_DATABASE  + '?driver=ODBC+Driver+17+for+SQL+Server'
-    SQLALCHEMY_DATABASE_URI = f'mssql+pyodbc://{SQL_USER_NAME}:{quote_plus(SQL_PASSWORD)}@{SQL_SERVER}:1433/{SQL_DATABASE}?driver=ODBC+Driver+17+for+SQL+Server'
+    SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + SQL_DATABASE  + '?driver=ODBC+Driver+17+for+SQL+Server'
+    # SQLALCHEMY_DATABASE_URI = f'mssql+pyodbc://{SQL_USER_NAME}:{quote_plus(SQL_PASSWORD)}@{SQL_SERVER}:1433/{SQL_DATABASE}?driver=ODBC+Driver+17+for+SQL+Server'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
  
     ### Info for MS Authentication ###
